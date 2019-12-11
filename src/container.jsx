@@ -1,5 +1,5 @@
 import React from "react";
-import Image from "./Image";
+import Image from "./Image.jsx";
 import CityList from "./City-List";
 
 export default class Container extends React.Component {
