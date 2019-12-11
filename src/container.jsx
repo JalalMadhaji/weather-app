@@ -1,4 +1,5 @@
 import React from 'react'
+import CityList from './City-List'
 
 export default class Container extends React.Component{
 
@@ -6,11 +7,23 @@ export default class Container extends React.Component{
         super()
         this.state={
             city:"Aden",
-            cities:["Aden","Sana'a","Taiz"],
+            cities:["Aden","Sana'a","Cairo"],
             weather:"",
             
         }
 
+    }
+
+    handleClick = name =>{
+        fetch(`http://api.weatherstack.com/current?access_key=9c5d884fbb53e36a3f2351ef8152fc08&query=${name}`).then(data=>{
+            return data.json()
+            
+        }).then(result=>{
+            console.log(result)
+            this.setState({
+                weather:result
+            })
+        })
     }
 
     componentDidMount(){
@@ -26,7 +39,9 @@ export default class Container extends React.Component{
     }
     render(){
         return(
-            <div></div>
+            <div className="container">
+                <CityList cities={this.state.cities} handleClick={this.handleClick} />
+            </div>
         )
     }
 }
