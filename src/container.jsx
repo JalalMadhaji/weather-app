@@ -7,17 +7,8 @@ export default class Container extends React.Component {
     super();
     this.state = {
       city: "Aden",
-      cities: ["Aden", "Sana'a", "Taiz"],
-      weather: ""
-    };
-  }
-
-  constructor() {
-    super();
-    this.state = {
-      city: "Aden",
       cities: ["Aden", "Sana'a", "Cairo"],
-      weather: ""
+      weather: []
     };
   }
 
@@ -31,7 +22,7 @@ export default class Container extends React.Component {
       .then(result => {
         console.log(result);
         this.setState({
-          weather: result
+          weather: [result]
         });
       });
   };
@@ -54,6 +45,12 @@ export default class Container extends React.Component {
     return (
       <div className="container">
         <CityList cities={this.state.cities} handleClick={this.handleClick} />
+        {
+          <Image
+            weather={this.state.weather.length > 0 ? this.state.weather : []}
+          />
+        }
+        {/* <Image /> */}
       </div>
     );
   }

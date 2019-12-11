@@ -3,6 +3,7 @@ export default class Image extends Component {
   render() {
     return (
       <div
+        className="bac-img"
         style={{
           backgroundImage:
             "url(" +
@@ -14,9 +15,16 @@ export default class Image extends Component {
           height: "800px"
         }}
       >
-        <h1>{this.props.weather.request}</h1>
-        <h1>{this.props.weather.request}</h1>
-        <h1>{this.props.weather.request}</h1>
+        {console.log("here ", this.props.weather)}
+        {this.props.weather.map(city => {
+          return (
+            <div>
+              <h1>{city.request.query}</h1>
+              <h2>{city.current.temperature}</h2>
+              <img src={city.current.weather_icons} alt="" />
+            </div>
+          );
+        })}
       </div>
     );
   }
