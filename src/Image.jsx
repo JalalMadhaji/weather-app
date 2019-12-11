@@ -10,15 +10,19 @@ export default class Image extends Component {
       <div
         className="image"
         style={{
-          background: `url(${Airship})`,
+          background: `linear-gradient(
+            45deg,
+            rgba(6, 100, 112, 0.5),
+            rgba(134, 228, 240, 0.429)
+          ), url(${Airship})`,
           backgroundSize: "cover",
           backgroundPosition: "center"
         }}
       >
         {this.props.weather.map(city => (
           <div key={city.request.query}>
-            <h1>{city.request.query}</h1>
-            <h3>{city.current.temperature}&#176;</h3>
+            <h3>{city.request.query}</h3>
+            <h1>{city.current.temperature}&#176;</h1>
             <img src={city.current.weather_icons[0]} alt="img" />
           </div>
         ))}
